@@ -1,11 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from sentry_sdk import set_user
+import os
+
 import sentry_sdk
 
 set_user({"email": "jane.doe@example.com"})
 
 sentry_sdk.init(
-    dsn="https://805e38602c2ad49ae51c8d11fa7ad5dc@o4506899278856192.ingest.us.sentry.io/4506899280297984",
+    dsn = os.getenv("DSN"),
     # Set traces_sample_rate to 1.0 to capture 100%
     # of transactions for performance monitoring.
     traces_sample_rate=1.0,
